@@ -4,5 +4,5 @@ if exist new.xml (
 	copy 2.xml 3.xml
 	copy 1.xml 2.xml
 	copy new.xml 1.xml
-	rm new.xml
+	del new.xml
 )
