@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+ <testsuite name="Deploy Network Service E2E Tests" timestamp="2016-10-24T22:22:28" hostname="localhost" time="691.836" errors="0" tests="9" skipped="0" disabled="0" failures="0">
+  <testcase classname="Deploy Network Service E2E Tests" name="will login" time="4.23" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will add a new VIM to resource VIM list" time="3.396" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will add a new VNFM to resources list" time="3.583" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will add a new NSD to catalog" time="15.807" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will deploy network service" time="18.16" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will check the deploy state" time="303.065" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will terminate network service" time="314.847" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will delete network service" time="14.537" />
+  <testcase classname="Deploy Network Service E2E Tests" name="will delete NSD from catalog" time="14.203" />
+ </testsuite>
+</testsuites>

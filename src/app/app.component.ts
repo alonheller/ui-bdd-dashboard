@@ -13,4 +13,5 @@ export class AppComponent {
   }
 
   title = this.jenkinsBddParserService.getTitle();
+  bdd = this.jenkinsBddParserService.getLastReportData().subscribe(res => res['_body']);
 }
