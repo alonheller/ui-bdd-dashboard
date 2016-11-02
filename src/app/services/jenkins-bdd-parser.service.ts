@@ -1,43 +1,32 @@
-import { Injectable }    from '@angular/core';
-import { Http } from '@angular/http';
-/*import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';*/
+import {Injectable}    from '@angular/core';
+import {Http} from '@angular/http';
+//import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
-//import { Builder } from 'xml2js';
-
-/*import './xml2json.js';
-declare function xml2json(xml:any, tab?: any): any;*/
-//declare var xml2json: any;
+import {Observable} from 'rxjs';
+import * as xml2js from 'xml2js';
+//import {Parser} from 'xml2js';
+import {ReportResult} from "../types/ReportResult";
 
 @Injectable()
 export class JenkinsBddParserService {
 
-  private jenkinsUrl = 'http://jenkins/view/CBND/view/DEV/job/cbnd-bdd-ui/ws/ui/test/reports/htmlReport.html';
+  private url: string;
 
-  constructor(private http:Http) {
+  constructor(private http: Http) {
+    this.url = '/assets/1.xml';
   }
 
-  getTitle(): string {
-    return 'app works from service :)';
-  }
+  getData(): Observable<ReportResult> {
 
-  getLastReportData(): any {
-    return this.http.get('/assets/1.xml')
-      .do(x => console.log(`Last BDD Results: \r\n================= \r\n\r\n${x['_body']}`));
-/*      .map(res => {
-        var builder = new xml2js.Builder();
-      });*/
-      /*.map(res => {
-        console.log('----------------------------- ' + res['_body']);
-        var xxx = JSON.parse(xml2json(res['_body']));
-        console.log('xxx ----------------------------- ' + xxx);
-      });*/
+    var parser = new xml2js.Parser();
+    var parseObservable = Observable.bindNodeCallback(parser.parseString);
 
-
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    return Observable
+      .interval(5000)
+      .switchMap(counter => this.http.get(this.url))
+      .switchMap(res => parseObservable(res._body))
+      .map((res: any) => {
+        return res.testsuites.testsuite[0].$ as ReportResult
+      });
   }
 }
