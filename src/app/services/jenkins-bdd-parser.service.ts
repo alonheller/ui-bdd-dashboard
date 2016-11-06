@@ -1,10 +1,11 @@
 import {Injectable}    from '@angular/core';
 import {Http} from '@angular/http';
-//import 'rxjs/add/operator/map';
-import 'rxjs/Rx';
-import {Observable} from 'rxjs';
-import * as xml2js from 'xml2js';
-//import {Parser} from 'xml2js';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/observable/bindNodeCallback';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
+import {parseString} from 'xml2js';
 import {ReportResult} from "../types/ReportResult";
 
 @Injectable()
@@ -17,12 +18,10 @@ export class JenkinsBddParserService {
   }
 
   getData(): Observable<ReportResult> {
-
-    var parser = new xml2js.Parser();
-    var parseObservable = Observable.bindNodeCallback(parser.parseString);
+    let parseObservable = Observable.bindNodeCallback(parseString);
 
     return Observable
-      .interval(5000)
+      .interval(60000)
       .switchMap(counter => this.http.get(this.url))
       .switchMap(res => parseObservable(res._body))
       .map((res: any) => {

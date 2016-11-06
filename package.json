@@ -20,7 +20,11 @@
     "@angular/platform-browser": "~2.0.0",
     "@angular/platform-browser-dynamic": "~2.0.0",
     "@angular/router": "~3.0.0",
+    "@types/highcharts": "^4.2.39",
+    "@types/xml2js": "0.0.28",
+    "commonjs-highcharts": "^4.0.3",
     "core-js": "^2.4.1",
+    "highcharts": "^5.0.2",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23"
