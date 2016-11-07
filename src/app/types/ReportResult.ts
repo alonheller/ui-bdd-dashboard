@@ -1,15 +1,26 @@
 export class ReportResult {
-  disabled: string;//"0"
-  errors: string;//"0"
-  failures: string;//"0"
+  disabled: number;//"0"
+  errors: number;//"0"
+  failures: number;//"0"
   hostname: string;//"localhost"
   name: string;//"Deploy Network Service E2E Tests"
-  skipped: string;//"0"
+  skipped: number;//"0"
   tests: number;//"9"
-  time: string;//"691.943"
-  timestamp: string;//"2016-10-25T10:05:34"
+  time: number;//"691.943"
+  timestamp: Date;//"2016-10-25T10:05:34"
 
-  constructor(name:string) {
+  constructor(name:string, disabled: string, errors: string,
+              failures: string, hostname: string,
+              skipped: string, tests: string, time: string,
+              timestamp: string) {
     this.name = name;
+    this.hostname = hostname;
+    this.errors = parseInt(errors);
+    this.failures = parseInt(failures);
+    this.disabled = parseInt(disabled);
+    this.skipped = parseInt(skipped);
+    this.tests = parseInt(tests);
+    this.time = parseFloat(time);
+    this.timestamp = new Date(timestamp);
   }
 }
