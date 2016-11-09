@@ -161,7 +161,18 @@ export class AppComponent implements OnInit {
           data[0].failures + data[0].errors
         ],
         color: '#ff0814'
-      }]
+      },
+        {
+          name: 'Disabled',
+          data: [
+            data[4].disabled + data[4].skipped,
+            data[3].disabled + data[3].skipped,
+            data[2].disabled + data[2].skipped,
+            data[1].disabled + data[1].skipped,
+            data[0].disabled + data[0].skipped
+          ],
+          color: '#ababab'
+        }]
     });
   }
 
